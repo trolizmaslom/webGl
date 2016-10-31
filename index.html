@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>S3</title>
+    <script src="js/jquery-1.12.3.min.js"></script>
     <script src="js/three.min.js"></script>
     <script src="js/OBJLoader.js"></script>
     <script src="js/TrackballControls.js"></script>
@@ -23,6 +24,7 @@
         left: 0; top: 0;
       }
       .canvas{
+        position: relative;
         width: calc(100% - 210px);
         margin-left:210px;
         height: calc(100vh - 210px);
@@ -34,6 +36,18 @@
         z-index: 10;
         position: relative;
       }
+      .buttn{
+        border:4px solid #ff0000;
+        display: inline-block; position: absolute;
+        height: 50px; line-height: 50px;
+        text-align: center; padding: 0 10px;
+        border-radius:15px;
+        top: 400px; left: 400px;
+        background-color: rgba(0,0,0,0.7);
+        z-index: 1000;
+        color: #fff;
+        cursor: pointer;
+      }
 
 
     </style>
@@ -41,7 +55,11 @@
   <body>
   <div class="content">
     <div class="aside">Like Menu</div>
-    <div class="canvas" id="render-area"></div>
+    <div class="buttn">click this shit</div>
+    <div class="canvas" id="render-area">
+
+
+    </div>
   </div>
   <footer> footer </footer>
 

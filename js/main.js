@@ -51,9 +51,7 @@ window.onload = function() {
   var objLoader = new THREE.OBJLoader();
 
   objLoader.load( 'model/bb8.obj', function ( object ) {
-
     console.log(object);
-
     object.traverse( function ( child )
     {
       if ( child instanceof THREE.Mesh )
