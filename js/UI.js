@@ -18,57 +18,53 @@
                     $(this).prev().text($(this).val());
                     createGround();
                 }).prev().text($('.chank-size').val());
-                object.find('.scene-sizex').on('change', function () {
-                    $(this).prev().text($(this).val());
-                    createGround();
-                }).prev().text($('.scene-sizex').val());
-                object.find('.scene-sizey').on('change', function () {
-                    $(this).prev().text($(this).val());
-                    createGround();
-                }).prev().text($('.scene-sizey').val());
+                
                 object.find('button.left').on('mousedown', function () {
                     var interval = setInterval(function () {
                         rotateCamera(-1);
                     },10);
-                    $(this).on('mouseup', function () {
+                    function handler() {
                         clearInterval(interval);
-                    })
+                    }
+                    $(this).on('mouseleve', handler);
+                    $(document).on('mouseup', 'body', handler);
+
                 });
                 object.find('button.right').on('mousedown', function () {
                     var interval = setInterval(function () {
                         rotateCamera(1);
                     },10);
-                    $(this).on('mouseup', function () {
+                    function handler() {
                         clearInterval(interval);
-                    })
+                    }
+                    $(this).on('mouseup', handler);
+                    $(document).on('mouseup', 'body', handler);
                 });
                 object.find('button.zoomin').on('mousedown', function () {
                     var interval = setInterval(function () {
                         zoomCamera(-1);
                     },10);
-                    $(this).on('mouseup', function () {
+                    function handler() {
                         clearInterval(interval);
-                    })
+                    }
+                    $(this).on('mouseleve', handler);
+                    $(document).on('mouseup', 'body', handler);
                 });
                 object.find('button.zoomout').on('mousedown', function () {
                     var interval = setInterval(function () {
                         zoomCamera(1);
                     },10);
-                    $(this).on('mouseup', function () {
+                    function handler() {
                         clearInterval(interval);
-                    })
+                    }
+                    $(this).on('mouseleve', handler);
+                    $(document).on('mouseup', 'body', handler);
                 });
             });
 
         },
         getChunkSize:function () {
             return parseInt($(this).find('.chank-size').val());
-        },
-        getSceneSize:function () {
-            var obj = {x:0,y:0};
-            obj.x = parseInt($(this).find('.scene-sizex').val());
-            obj.y = parseInt($(this).find('.scene-sizey').val());
-            return obj;
         }
 
 
