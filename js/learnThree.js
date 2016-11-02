@@ -123,7 +123,7 @@ function createBuild(buildData, chankX, chankY, chankSize){
         dom.position.x = (chankX-(chankSize/2))+((chankSize/100)*buildData.x);
         dom.position.y = (chankY-(chankSize/2))+((chankSize/100)*buildData.y);
         dom.scale.set(buildData.scale, buildData.scale, buildData.scale);
-        dom.rotation.x = 90 * Math.PI/180;
+
         dom.material = new THREE.MeshNormalMaterial();
         scene.add(dom);
         objects.buildGroup.add(dom);//добавляем в контейнер домики
