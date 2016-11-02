@@ -2,12 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>S3</title>
+    <title>TeritoryPRO</title>
     <script src="js/jquery-1.12.3.min.js"></script>
     <script src="js/three.min.js"></script>
     <script src="js/OBJLoader.js"></script>
-    <script src="js/TrackballControls.js"></script>
+
+
     <script src="js/learnThree.js"></script>
+    <script src="js/UI.js"></script>
+
     <!--<script src="js/main.js"></script>-->
     <style>
     body {
@@ -48,14 +51,27 @@
         color: #fff;
         cursor: pointer;
       }
+        .row{
+            border-bottom: 1px solid #000;
+            display: block;
+        }
+        .title{ display: block;}
 
 
     </style>
   </head>
   <body>
   <div class="content">
-    <div class="aside">Like Menu</div>
-    <div class="buttn">click this shit</div>
+    <div class="aside ui">
+        <div class="row">UI</div>
+        <div class="row">Размер чанка - <span></span><input class="chank-size" type="range" name="points" min="10" max="100" value="50"></div>
+        <div class="row">Размер сцены в чанках по Х- <span></span><input class="scene-sizex" type="range" name="points" min="1" max="20" value="10"></div>
+        <div class="row">Размер сцены в чанках по Y- <span></span><input class="scene-sizey" type="range" name="points" min="1" max="20" value="10"></div>
+        <div class="row"><span class="title">повернуть камеру </span><button class="left"><<<<<<<</button> <button class="right">>>>>>>></button></div>
+        <div class="row"><span class="title">ZOOOOOM </span><button class="zoomin">ZoomIn</button> <button class="zoomout">ZoomOut</button></div>
+
+    </div>
+
     <div class="canvas" id="render-area">
 
 
