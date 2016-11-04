@@ -19,8 +19,10 @@
         {
           "x":25,
           "y":75,
-          "scale":1,
-          "url":"models/build.obj"
+          "scale":10,
+          "url":"models/build01.obj",
+          "texture":"models/build01_texture.jpg",
+          "mat":"models/build01.mtl"
         }
       ]
     },
@@ -96,8 +98,8 @@
         {
           "x":25,
           "y":75,
-          "scale":1,
-          "url":"models/build.obj"
+          "scale":10,
+          "url":"models/build01.obj"
         }
       ]
     },

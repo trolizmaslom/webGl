@@ -36,17 +36,14 @@ window.onload = function() {
 
   var onError = function ( xhr ) { };
 
-  loader.load( 'model/Body diff MAP.jpg', function ( image ) {
+  loader.load( 'models/build01_texture.jpg', function ( image ) {
     textureBody.image = image;
     textureBody.needsUpdate = true;
   });
 
-  loader.load( 'model/HEAD diff MAP.jpg', function ( image ) {
-    textureHead.image = image;
-    textureHead.needsUpdate = true;
-  });
 
-  var meshes = [];
+
+  var meshes ;
 
   var objLoader = new THREE.OBJLoader();
 
@@ -56,21 +53,21 @@ window.onload = function() {
     {
       if ( child instanceof THREE.Mesh )
       {
-        meshes.push(child);
+        meshes=child;
       }
     });
 
-    var head = meshes[0];
-    var body = meshes[1];
 
-    head.position.y = -80;
+
+
+
     body.position.y = -80;
 
-    head.rotation.y = Math.PI/3;
+
     body.rotation.y = Math.PI/3;
 
-    var mapHeightBody = new THREE.TextureLoader().load( "model/BODY bump MAP.jpg" );
-    var mapHeightHead = new THREE.TextureLoader().load( "model/HEAD bump MAP.jpg" );
+
+
 
     head.material = new THREE.MeshPhongMaterial({map: textureHead, specular: 0xfceed2, bumpMap: mapHeightHead, bumpScale: 0.4, shininess: 25});
     body.material = new THREE.MeshPhongMaterial({map: textureBody, specular: 0xfceed2, bumpMap: mapHeightBody, bumpScale: 0.4, shininess: 25});

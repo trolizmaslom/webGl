@@ -118,16 +118,34 @@ function createBuild(buildData, chankX, chankY, chankSize){
     };
     var onError = function ( xhr ) { };
     var objLoader = new THREE.OBJLoader();
+    var dom;
     objLoader.load( buildData.url, function ( object ) {
-        var dom = object;
-        dom.position.x = (chankX-(chankSize/2))+((chankSize/100)*buildData.x);
-        dom.position.y = (chankY-(chankSize/2))+((chankSize/100)*buildData.y);
-        dom.scale.set(buildData.scale, buildData.scale, buildData.scale);
-
-        dom.material = new THREE.MeshNormalMaterial();
-        scene.add(dom);
-        objects.buildGroup.add(dom);//добавляем в контейнер домики
+        dom = object;
+        create();
     }, onProgress, onError );
+    function create() {
+        var manager = new THREE.LoadingManager();
+        var loader  = new THREE.ImageLoader( manager );
+        var texture = new THREE.Texture();
+        loader.load( 'models/build01_texture.jpg', function ( image ) {
+            texture.image = image;
+            texture.needsUpdate = true;
+            dom.material = new THREE.MeshPhongMaterial({map: texture, specular: 0xfceed2});
+            dom.position.x = (chankX-(chankSize/2))+((chankSize/100)*buildData.x);
+            dom.position.y = (chankY-(chankSize/2))+((chankSize/100)*buildData.y);
+            dom.scale.set(buildData.scale, buildData.scale, buildData.scale);
+            scene.add(dom);
+            objects.buildGroup.add(dom);//добавляем в контейнер домики
+        });
+
+
+
+
+
+       
+
+    }
+
 }
 function createChunk(size, chunkData){//строим один чанк
     var chunk = {};
