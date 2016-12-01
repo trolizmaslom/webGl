@@ -4,7 +4,6 @@ var renderer;
 var controls;
 var TUI;
 var objects={//обьект хранящий в себе все обьекты сцены
-    meshes:[],
     camParam:{//параметры камеры
         fov:45,//угол перспективы камеры в градусах
         posx:0,// позиция по X
@@ -17,12 +16,14 @@ var objects={//обьект хранящий в себе все обьекты �
         angleZ:30,// угол высоты камеры относительно сцены в градусах
         roundMoveStep:1,// шаг поворота камеры в градусах
         zoomStep:12,//шаг зума камеры
+        updownStep:3, //шаг движения камеры вверх/вниз
         zoomLimitMin:10, //минимальный зум
-        zoomLimitMax:10000,//максимальный зум
+        zoomLimitMax:3000,//максимальный зум
         dist:0
     }
 };
 var serverData;
+var domEvents;
 
 function getDataFromServer(){
     $.getJSON('objects.json',function (data) {
@@ -33,7 +34,7 @@ function getDataFromServer(){
 }
 function addLight(){ //добавление света на сцену
     var light = new THREE.DirectionalLight( '#ffffff' , 1 );
-    light.position.set(0, 100, 100);
+    light.position.set(300, -100, 100);
     scene.add(light);
 
     var ambiColor = "#cbc9bb";
@@ -71,13 +72,16 @@ function calcCameraPosition(sizeScene) {
     var x = (Math.sqrt(Math.pow(a,2)+Math.pow(b,2)))/2; //пол диагонали сцены
     objects.camParam.dist = x/getTanDeg((objects.camParam.fov)/2); //дистанция от камеры к цели
     camera.up.set(0,0,1);   // указываем верх камеры вектором(x,y,z)
-    objects.camParam.posx = a/2+(Math.sqrt((Math.pow(objects.camParam.dist,2))/2))*-1;
+    objects.camParam.posx = 0;
+    // objects.camParam.posy = 0;
+    // objects.camParam.posz = 425;
+    //objects.camParam.posx = a/2+(Math.sqrt((Math.pow(objects.camParam.dist,2))/2))*-1;
     objects.camParam.posy = b/2+(Math.sqrt((Math.pow(objects.camParam.dist,2))/2))*-1;
     objects.camParam.posz = objects.camParam.dist * getSinDeg(objects.camParam.angleZ);
     saveLastPosition();
     setCameraPosition();
-    objects.camParam.lookAt = new THREE.Vector3((a/2),(b/2),0);
-    //objects.camParam.lookAt = new THREE.Vector3(0,0,0);
+    //objects.camParam.lookAt = new THREE.Vector3((a/2),(b/2),0);
+    objects.camParam.lookAt = new THREE.Vector3(20,190,0);
     camera.lookAt(objects.camParam.lookAt); //точка направления камеры   очень важно сохранять очередность указания параметров 1.верх камери 2.прзиция камеры 3.направление камеры
 }
 function setCameraPosition() {
@@ -86,9 +90,7 @@ function setCameraPosition() {
     camera.position.z = objects.camParam.posz;//позиция камеры по z
     camera.lookAt(objects.camParam.lookAt);
 }
-function getSceneSize(data){
 
-}
 function createGround() {
     scene.remove(scene.getObjectByName("groundGroup"));
     scene.remove(scene.getObjectByName("buildGroup"));
@@ -110,41 +112,59 @@ function createGround() {
     calcCameraPosition(sceneSize);//выставляем камеру в зависимости от размера сцены
 }
 function createBuild(buildData, chankX, chankY, chankSize){
+    console.log(buildData.texture);
+    var bX=parseInt(buildData.x), bY=parseInt(buildData.y), bZ=parseInt(buildData.z), bS=parseInt(buildData.scale);  // обработка входящих параметров
+    if(!isNaN(bX) || bX > 0){  if(bX>100){ bX=100;}     }else{bX = 0;}
+    if(!isNaN(bY) || bY > 0){  if(bY>100){ bY=100;}     }else{bY = 0;}
+    if(isNaN(bZ)){bZ = 0}
+    if(isNaN(bS) || bS <= 0){bS = 1}
+
     var onProgress = function ( xhr ) {
         if ( xhr.lengthComputable ) {
             var percentComplete = xhr.loaded / xhr.total * 100;
             console.log( Math.round(percentComplete, 2) + '% downloaded' );
+
         }
     };
     var onError = function ( xhr ) { };
     var objLoader = new THREE.OBJLoader();
     var dom;
-    objLoader.load( buildData.url, function ( object ) {
-        dom = object;
-        create();
-    }, onProgress, onError );
-    function create() {
-        var manager = new THREE.LoadingManager();
-        var loader  = new THREE.ImageLoader( manager );
-        var texture = new THREE.Texture();
-        loader.load( 'models/build01_texture.jpg', function ( image ) {
+    var manager = new THREE.LoadingManager();
+    var loader  = new THREE.ImageLoader( manager );
+    var texture = new THREE.Texture();
+    if(buildData.texture != undefined){
+        loader.load( buildData.texture, function ( image ) {
             texture.image = image;
             texture.needsUpdate = true;
-            dom.material = new THREE.MeshPhongMaterial({map: texture, specular: 0xfceed2});
-            dom.position.x = (chankX-(chankSize/2))+((chankSize/100)*buildData.x);
-            dom.position.y = (chankY-(chankSize/2))+((chankSize/100)*buildData.y);
-            dom.scale.set(buildData.scale, buildData.scale, buildData.scale);
-            scene.add(dom);
-            objects.buildGroup.add(dom);//добавляем в контейнер домики
         });
-
-
-
-
-
-       
-
     }
+
+
+    objLoader.load( buildData.url, function ( object ) {
+        object.traverse( function ( child )
+        {
+            if ( child instanceof THREE.Mesh )
+            {
+                dom=child;
+            }
+        });
+        dom.position.x = (chankX - (chankSize / 2)) + ((chankSize / 100) * bX);
+        dom.position.y = (chankY - (chankSize / 2)) + ((chankSize / 100) * bY);
+        dom.position.z = bZ;
+        dom.scale.set(bS, bS, bS);
+        if(buildData.texture != undefined){
+            dom.material = new THREE.MeshPhongMaterial({map: texture, specular: 0xfceed2});
+        }else{
+            dom.material = new THREE.MeshNormalMaterial();
+        }
+
+        scene.add(dom);
+        objects.buildGroup.add(dom);//добавляем в контейнер домики
+    }, onProgress, onError );
+
+
+
+
 
 }
 function createChunk(size, chunkData){//строим один чанк
@@ -162,6 +182,10 @@ function createChunk(size, chunkData){//строим один чанк
     chunk.plane.position.x = (chunkData.x*size)-(size/2);
     chunk.plane.position.y = (chunkData.y*size)-(size/2);
     objects.groundGroup.add(chunk.plane);//добавляем в контейнер чанк
+    domEvents.addEventListener(chunk.plane, 'click', function () {
+        alert('rcoord XY:---->'+chunkData.x+':'+chunkData.y);
+    }, false);
+
     if(chunkData.buildings != undefined){ // если у чанка есть дома
         for (var i = 0; i < chunkData.buildings.length; i++) {
             createBuild(chunkData.buildings[i], chunk.plane.position.x, chunk.plane.position.y, size);
@@ -190,6 +214,16 @@ function zoomCamera(direction) {
     }
 
 }
+function upDownCamera(direction) {
+    if((objects.camParam.posz <= objects.camParam.zoomLimitMin && direction < 0) || (objects.camParam.posz >= objects.camParam.zoomLimitMax && direction > 0)){
+        console.log('zooming stoped by limits:'+objects.camParam.posz);
+        return;
+    }else {
+        var step = objects.camParam.updownStep * direction;
+        objects.camParam.posz = step + objects.camParam.lastPosz;
+        saveLastPosition();
+    }
+}
 function saveLastPosition() {
     objects.camParam.lastPosx = objects.camParam.posx;
     objects.camParam.lastPosy = objects.camParam.posy;
@@ -215,9 +249,10 @@ function startBuildingScene(){
         try{
             renderer = new THREE.CanvasRenderer;
         }catch(err){
-            alert('Установіть нормальный браузер, а це гівно просто Удаліть');
+            alert('Установите нормальный Браузер!');
         }
     }
+    domEvents = new THREEx.DomEvents(camera, renderer.domElement)
     renderer.setSize( viewport.clientWidth, viewport.clientHeight );
     renderer.setClearColor(0xFFFFff);
     viewport.appendChild( renderer.domElement );

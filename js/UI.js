@@ -60,6 +60,26 @@
                     $(this).on('mouseleve', handler);
                     $(document).on('mouseup', 'body', handler);
                 });
+                object.find('button.up').on('mousedown', function () {
+                    var interval = setInterval(function () {
+                        upDownCamera(1);
+                    },10);
+                    function handler() {
+                        clearInterval(interval);
+                    }
+                    $(this).on('mouseleve', handler);
+                    $(document).on('mouseup', 'body', handler);
+                });
+                object.find('button.down').on('mousedown', function () {
+                    var interval = setInterval(function () {
+                        upDownCamera(-1);
+                    },10);
+                    function handler() {
+                        clearInterval(interval);
+                    }
+                    $(this).on('mouseleve', handler);
+                    $(document).on('mouseup', 'body', handler);
+                });
             });
 
         },
