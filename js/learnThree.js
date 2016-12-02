@@ -15,7 +15,7 @@ var objects={//обьект хранящий в себе все обьекты �
         lookAt:0,//
         angleZ:30,// угол высоты камеры относительно сцены в градусах
         roundMoveStep:1,// шаг поворота камеры в градусах
-        zoomStep:12,//шаг зума камеры
+        zoomStep:4,//шаг зума камеры
         updownStep:3, //шаг движения камеры вверх/вниз
         zoomLimitMin:10, //минимальный зум
         zoomLimitMax:3000,//максимальный зум
@@ -73,7 +73,7 @@ function calcCameraPosition(sizeScene) {
     objects.camParam.dist = x/getTanDeg((objects.camParam.fov)/2); //дистанция от камеры к цели
     camera.up.set(0,0,1);   // указываем верх камеры вектором(x,y,z)
     objects.camParam.posx = 0;
-    // objects.camParam.posy = 0;
+     //objects.camParam.posy = 0;
     // objects.camParam.posz = 425;
     //objects.camParam.posx = a/2+(Math.sqrt((Math.pow(objects.camParam.dist,2))/2))*-1;
     objects.camParam.posy = b/2+(Math.sqrt((Math.pow(objects.camParam.dist,2))/2))*-1;
@@ -81,7 +81,7 @@ function calcCameraPosition(sizeScene) {
     saveLastPosition();
     setCameraPosition();
     //objects.camParam.lookAt = new THREE.Vector3((a/2),(b/2),0);
-    objects.camParam.lookAt = new THREE.Vector3(20,190,0);
+    objects.camParam.lookAt = new THREE.Vector3(190,90,0);
     camera.lookAt(objects.camParam.lookAt); //точка направления камеры   очень важно сохранять очередность указания параметров 1.верх камери 2.прзиция камеры 3.направление камеры
 }
 function setCameraPosition() {
