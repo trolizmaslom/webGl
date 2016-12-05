@@ -33,7 +33,7 @@ function getDataFromServer(){
     });
 }
 function addLight(){ //добавление света на сцену
-    var light = new THREE.DirectionalLight( '#ffffff' , 1 );
+    var light = new THREE.DirectionalLight( '#cccccc' , 1 );
     light.position.set(300, -100, 100);
     scene.add(light);
 
@@ -81,7 +81,7 @@ function calcCameraPosition(sizeScene) {
     saveLastPosition();
     setCameraPosition();
     //objects.camParam.lookAt = new THREE.Vector3((a/2),(b/2),0);
-    objects.camParam.lookAt = new THREE.Vector3(190,90,0);
+    objects.camParam.lookAt = new THREE.Vector3(250,150,0);
     camera.lookAt(objects.camParam.lookAt); //точка направления камеры   очень важно сохранять очередность указания параметров 1.верх камери 2.прзиция камеры 3.направление камеры
 }
 function setCameraPosition() {
@@ -98,7 +98,6 @@ function createGround() {
     objects.buildGroup = new THREE.Object3D();//создаем пустой обьект-контейнер для домиков
     objects.groundGroup.name = "groundGroup";
     objects.buildGroup.name = "buildGroup";
-
     var chunkSize = TUI.TUI('getChunkSize');
     var sceneSize = {x:0, y:0}; //указывается в количестве чанков
         console.log(serverData);
@@ -138,8 +137,6 @@ function createBuild(buildData, chankX, chankY, chankSize){
             texture.needsUpdate = true;
         });
     }
-
-
     objLoader.load( buildData.url, function ( object ) {
         object.traverse( function ( child )
         {
@@ -157,7 +154,6 @@ function createBuild(buildData, chankX, chankY, chankSize){
         }else{
             dom.material = new THREE.MeshNormalMaterial();
         }
-
         scene.add(dom);
         objects.buildGroup.add(dom);//добавляем в контейнер домики
     }, onProgress, onError );
@@ -243,7 +239,7 @@ function startBuildingScene(){
     addCamera(viewport);
     addLight();
     try{
-        renderer = new THREE.WebGLRenderer({ antialias:true });
+        renderer = new THREE.WebGLRenderer({ antialias:true,  alpha: true });
     }catch(err){
         alert('У Вашего Браузера Отсутствует Поддержка WebGL!');
         try{
@@ -254,19 +250,17 @@ function startBuildingScene(){
     }
     domEvents = new THREEx.DomEvents(camera, renderer.domElement)
     renderer.setSize( viewport.clientWidth, viewport.clientHeight );
-    renderer.setClearColor(0xFFFFff);
+
+    renderer.setClearColor( 0xffffff, 0);
+
     viewport.appendChild( renderer.domElement );
-
-
     createGround();//строим чанки
-
     geometry = new THREE.Geometry();
     geometry.vertices.push(new THREE.Vector3(0, 0, 0));
     geometry.vertices.push(new THREE.Vector3(700, 0, 0));
     material = new THREE.LineBasicMaterial( { color: 0xff0000, linewidth: 2 } );
     line = new THREE.Line(geometry, material);
     scene.add(line);
-
     geometry = new THREE.Geometry();
     geometry.vertices.push(new THREE.Vector3(0, 0, 0));
     geometry.vertices.push(new THREE.Vector3(0, 700, 0));
