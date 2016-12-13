@@ -260,7 +260,7 @@
     {"x":6,"y":2,"texture":"textures/teritory_baw_diffuse_86.png"},
     {"x":6,"y":3,"texture":"textures/teritory_baw_diffuse_76.png",
       "buildings":[
-        {"x":87,"y":50,"z":0,"rotate":0,"scale":1,"url":"models/tower23.obj","texture":"models/tower23_baw_diffuse.png" },
+        {"x":87,"y":50,"z":0,"title":"Бизнес центр Центр","rotate":0,"scale":1,"url":"models/tower23.obj","texture":"models/tower23_baw_diffuse.png" },
         {"x":67,"y":23,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
         {"x":67,"y":28,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
         {"x":67,"y":66,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
@@ -285,7 +285,7 @@
     },
     {"x":6,"y":5,"texture":"textures/teritory_baw_diffuse_56.png",
       "buildings":[
-        {"x":70,"y":50,"z":0,"rotate":0,"scale":1,"url":"models/tower11.obj","texture":"models/tower11_baw_diffuse.png" }
+        {"x":70,"y":50,"z":0,"title":"Бизнес центр","rotate":0,"scale":1,"url":"models/tower11.obj","texture":"models/tower11_baw_diffuse.png" }
       ]
     },
     {"x":6,"y":6,"texture":"textures/teritory_baw_diffuse_46.png",
@@ -432,20 +432,83 @@
         {"x":60,"y":20,"z":0,"rotate":0,"scale":1,"url":"models/ship.obj","texture":"models/ship_baw_diffuse.png"}
       ]
     },
-    {"x":9,"y":3,"texture":"textures/teritory_baw_diffuse_79.png"},
-    {"x":9,"y":4,"texture":"textures/teritory_baw_diffuse_69.png"},
-    {"x":9,"y":5,"texture":"textures/teritory_baw_diffuse_59.png"},
-    {"x":9,"y":6,"texture":"textures/teritory_baw_diffuse_49.png"},
-    {"x":9,"y":7,"texture":"textures/teritory_baw_diffuse_39.png"},
+    {"x":9,"y":3,"texture":"textures/teritory_baw_diffuse_79.png",
+      "buildings":[
+        {"x":88,"y":55,"z":0,"rotate":0,"scale":1,"url":"models/tower24.obj","texture":"models/tower24_baw_diffuse.png" }
+      ]
+    },
+    {"x":9,"y":4,"texture":"textures/teritory_baw_diffuse_69.png",
+      "buildings":[
+        {"x":82,"y":83,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":82,"y":89,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":82,"y":95,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":69,"y":83,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":69,"y":89,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":69,"y":95,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"}
+      ]
+    },
+    {"x":9,"y":5,"texture":"textures/teritory_baw_diffuse_59.png",
+      "buildings":[
+        {"x":75,"y":48,"z":0,"rotate":0,"scale":1,"url":"models/tower2.obj","texture":"models/tower2_baw_diffuse.png" },
+        {"x":82,"y":1,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":82,"y":7,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":82,"y":13,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":82,"y":19,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":69,"y":1,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":69,"y":7,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":69,"y":13,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":69,"y":19,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"}
+      ]
+    },
+    {"x":9,"y":6,"texture":"textures/teritory_baw_diffuse_49.png",
+      "buildings":[
+        {"x":86,"y":20,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":86,"y":24,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":86,"y":28,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":86,"y":32,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":86,"y":36,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":66,"y":20,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":66,"y":24,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":66,"y":28,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":66,"y":32,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":66,"y":36,"z":0,"rotate":0,"scale":1,"url":"models/tree2.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":53,"y":80,"z":0,"rotate":0,"scale":1,"url":"models/tree1.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":36,"y":55,"z":0,"rotate":0,"scale":1,"url":"models/tree1.obj","texture":"models/tree_baw_diffuse.png"}
+      ]
+    },
+    {"x":9,"y":7,"texture":"textures/teritory_baw_diffuse_39.png",
+      "buildings":[
+        {"x":80,"y":80,"z":0,"rotate":0,"scale":1,"url":"models/tower3.obj","texture":"models/tower3_baw_diffuse.png" },
+        {"x":35,"y":9,"z":0,"rotate":0,"scale":1,"url":"models/tree1.obj","texture":"models/tree_baw_diffuse.png"},
+        {"x":100,"y":1,"z":0,"rotate":0,"scale":1,"url":"models/tree1.obj","texture":"models/tree_baw_diffuse.png"}
+      ]
+    },
     {"x":9,"y":8,"texture":"textures/teritory_baw_diffuse_29.png"},
-    {"x":9,"y":9,"texture":"textures/teritory_baw_diffuse_19.png"},
-    {"x":9,"y":10,"texture":"textures/teritory_baw_diffuse_09.png"},
+    {"x":9,"y":9,"texture":"textures/teritory_baw_diffuse_19.png",
+      "buildings":[
+        {"x":90,"y":60,"z":0,"rotate":0,"scale":1,"url":"models/tower4.obj","texture":"models/tower4_baw_diffuse.png" },
+        {"x":35,"y":75,"z":0,"rotate":0,"scale":1,"url":"models/tree1.obj","texture":"models/tree_baw_diffuse.png"}
+      ]
+    },
+    {"x":9,"y":10,"texture":"textures/teritory_baw_diffuse_09.png",
+      "buildings":[
+        {"x":55,"y":10,"z":0,"rotate":0,"scale":1,"url":"models/tree1.obj","texture":"models/tree_baw_diffuse.png"}
+      ]
+    },
     {"x":10,"y":1,"texture":"textures/teritory_baw_diffuse_100.png"},
-    {"x":10,"y":2,"texture":"textures/teritory_baw_diffuse_90.png"},
+    {"x":10,"y":2,"texture":"textures/teritory_baw_diffuse_90.png",
+      "buildings":[
+        {"x":27,"y":20,"z":0,"rotate":0,"scale":1,"url":"models/ship.obj","texture":"models/ship_baw_diffuse.png"}
+      ]
+    },
     {"x":10,"y":3,"texture":"textures/teritory_baw_diffuse_80.png"},
     {"x":10,"y":4,"texture":"textures/teritory_baw_diffuse_70.png"},
     {"x":10,"y":5,"texture":"textures/teritory_baw_diffuse_60.png"},
-    {"x":10,"y":6,"texture":"textures/teritory_baw_diffuse_50.png"},
+    {"x":10,"y":6,"texture":"textures/teritory_baw_diffuse_50.png",
+      "buildings":[
+        {"x":23,"y":60,"z":0,"rotate":0,"scale":1,"url":"models/tree1.obj","texture":"models/tree_baw_diffuse.png"}
+      ]
+    },
     {"x":10,"y":7,"texture":"textures/teritory_baw_diffuse_40.png"},
     {"x":10,"y":8,"texture":"textures/teritory_baw_diffuse_30.png"},
     {"x":10,"y":9,"texture":"textures/teritory_baw_diffuse_20.png"},
