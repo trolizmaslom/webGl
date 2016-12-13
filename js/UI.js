@@ -3,12 +3,8 @@
  */
 
 (function($) {
-
-    var defaults = {
-
-    };
+    var defaults = {};
     var methods = {
-
         init:function(params) {
             var options = $.extend({}, defaults, params);
             return this.each(function () {
